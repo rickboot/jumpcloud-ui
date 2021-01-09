@@ -1,27 +1,65 @@
 {
   "name": "jumpcloud-ui-assignment",
   "version": "2.0.0",
-  "description": "A project that can be used to assess front end developers",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/TheJumpCloud/jumpcloud-ui-assignment.git"
-  },
   "private": true,
-  "author": "JumpCloud",
-  "bugs": {
-    "url": "https://github.com/TheJumpCloud/jumpcloud-ui-assignment/issues"
+  "description": "A project that can be used to assess front end developers",
+  "author": {
+    "name": "JumpCloud"
   },
   "scripts": {
+    "serve": "vue-cli-service serve --host localhost --port 5555",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
     "start": "node server/server.js"
+  },
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "core-js": "^3.6.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "http-proxy-middleware": "^1.0.6",
+    "vue": "^2.6.11"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.2.2",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "_id": "jumpcloud-ui-assignment@2.0.0",
+  "bugs": {
+    "url": "https://github.com/TheJumpCloud/jumpcloud-ui-assignment/issues"
   },
   "engines": {
     "node": ">=12.16.1",
     "npm": ">=6.13.4"
   },
-  "dependencies": {
-    "chalk": "^4.1.0",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "http-proxy-middleware": "^1.0.6"
+  "homepage": "https://github.com/TheJumpCloud/jumpcloud-ui-assignment#readme",
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/TheJumpCloud/jumpcloud-ui-assignment.git"
   }
 }
