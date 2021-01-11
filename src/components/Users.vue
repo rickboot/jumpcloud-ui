@@ -1,10 +1,9 @@
 <template>
-  <div class="container">
-
+  <div class="users container">
+    
     <h4>Users</h4>
 
-    <table class="table table-striped">
-
+    <table>
       <thead>
         <tr>
           <th>Name</th>
@@ -13,22 +12,18 @@
           <th></th>
         </tr>
       </thead>
-
       <tbody>
         <tr  v-for="user in users" :key="user.id">
           <td>{{user.firstname}} {{user.lastname}}</td>
           <td>{{user.username}}</td>
           <td>{{user.email}}</td>
           <td>
-            <router-link :to="/edit/+user.id" tag="button">Edit</router-link>
-            <router-link :to="/details/+user.id" tag="button">Details</router-link>
-            <button>
-              <span @click="deleteUser(user.id)" tag="button" class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-            </button>
+            <router-link :to="/details/+user.id" tag="button" class="button-user glyphicon glyphicon-info-sign"></router-link>
+            <router-link :to="/edit/+user.id" tag="button" class="button-user glyphicon glyphicon-edit"></router-link>
+            <button><span @click="deleteUser(user.id)" tag="button" class="button-user glyphicon glyphicon-remove-sign" aria-hidden="true"></span></button>
           </td>
         </tr>
       </tbody>
-
     </table>
 
   </div>
@@ -78,6 +73,15 @@ export default {
 </script>
 
 <style>
+
+table {
+  border-collapse: separate;
+  width: 100%;
+  table-layout: auto;
+  border: none;
+  border-spacing: 0 10px;
+}
+
 
 </style>
 

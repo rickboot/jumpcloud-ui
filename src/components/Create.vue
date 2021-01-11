@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <router-link to="/">Back</router-link>
+    <router-link class="subnav" to="/">Back</router-link>
 
     <div v-if="notification" class="notification">
       {{notification}}
@@ -48,6 +48,11 @@
     methods:{
 
       createUser() {
+        if (!this.user.username && !this.user.email) {
+          this.notification = 'Must include username and email.';
+          return;
+        }
+
         fetch('http://localhost:8005/api/systemusers/', {
           method: 'POST',
           headers: {
