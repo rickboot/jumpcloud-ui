@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import App from './App.vue'
 import Create from './components/Create'
 import Details from './components/Details'
-import Update from './components/Update'
+import Edit from './components/Edit'
 import Users from './components/Users'
 
 Vue.config.productionTip = false
@@ -16,8 +16,8 @@ const router = new VueRouter({
   routes: [
     {path: '/', component: Users},
     {path: '/create', component: Create},
-    {path: '/details', component: Details},
-    {path: '/update', component: Update}
+    {path: '/details/:id', component: Details},
+    {path: '/edit/:id', component: Edit}
   ]
 })
 

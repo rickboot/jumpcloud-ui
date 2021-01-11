@@ -2,16 +2,23 @@
   <div class="container">
     <router-link to="/">Back</router-link>
 
+    <div v-if="notification" class="notification">
+      {{notification}}
+    </div>
+
     <h1 class="page-header">{{user.firstname}} {{user.lastname}}
       <span class="pull-right">
         <router-link class="btn btn-primary" v-bind:to="'/edit/' + user.id">Edit</router-link>
-        <button class="btn btn-danger" v-on:click="deleteCustomer(user.id)">Delete</button>
+        <button class="btn btn-danger" v-on:click="deleteUser(user.id)">Delete</button>
       </span>
     </h1>
   
     <ul class="list-group">
       <li class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{user.username}}</li>
       <li class="list-group-item"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{user.email}}</li>
+      <li class="list-group-item"><strong>Created: </strong>{{user.created}}</li>
+      <li class="list-group-item"><strong>Activated: </strong>{{user.activated}}</li>
+      <!-- <li v-for="(item, index) in user" :key="item.id"><strong>{{index}}</strong> : {{item}}</li> -->
     </ul>
 
   </div>
@@ -22,37 +29,36 @@
     name: 'user-details',
     data: function() {
       return {
-        users: [],
+        userId: this.$route.params.id,
         user: {},
+        notification: ''
       }
     },
     
     methods:{
       
-      getUsers() {
-        fetch('http://localhost:8005/api/systemusers')
-        .then(response => response.json() )
-        .then(data => {
-          this.users = data.results;
-          this.user = this.users[1];
-        })
-        .catch(err => console.log(err));
-      },
-      
       getUser() {
-        let userId = 
-        fetch('http://localhost:8005/api/systemusers/' + userId)
+        fetch('http://localhost:8005/api/systemusers/' + this.userId)
         .then(response => response.json() )
         .then(data => {
-          this.users = [...this.users, data];
+          this.user = data;
         })
         .catch(err => console.log(err));
       },
+     
+      deleteUser(userId) {
+        fetch('http://localhost:8005/api/systemusers/' + userId, {
+          method: 'DELETE'
+        })
+        .then(() => {
+          this.notification = "User deleted!";
+        })
+        .catch(err => console.log(err));
+      }
     },
 
     created: function(){
-        // this.fetchCustomer(this.$route.params.id);
-        this.getUsers();
+        this.getUser(this.userId);
     },
   }
 </script>

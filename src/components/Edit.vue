@@ -6,14 +6,10 @@
       {{notification}}
     </div>
 
-    <form v-on:submit.prevent="createUser">
-      <h4>Create User</h4>
+    <form v-on:submit.prevent="updateUser">
+      <h4>Edit User</h4>
       <div class="well">
  
-        <div class="form-group">
-          <label>Username</label>
-          <input type="text" class="form-control" v-model="user.username">
-        </div>
         <div class="form-group">
           <label>First Name</label>
           <input type="text" class="form-control" v-model="user.firstname">
@@ -36,10 +32,11 @@
 
 <script>
   export default {
-    name: 'create',
+    name: 'edit',
 
     data: function() {
       return {
+        userId: this.$route.params.id,
         user: {},
         notification: ''
       }
@@ -47,24 +44,38 @@
     
     methods:{
 
-      createUser() {
-        fetch('http://localhost:8005/api/systemusers/', {
-          method: 'POST',
+      getUser() {
+        fetch('http://localhost:8005/api/systemusers/' + this.userId)
+        .then(response => response.json() )
+        .then(data => {
+          this.user = data;
+        })
+        .catch(err => console.log(err));
+      },
+
+      updateUser() {
+        const user = {
+          email: this.user.email,
+          firstname: this.user.firstname,
+          lastname: this.user.lastname
+        };
+        fetch('http://localhost:8005/api/systemusers/' + this.userId, {
+          method: 'PUT',
           headers: {
             'Content-Type': 'application/json;charset=UTF-8',
           },
-          body: JSON.stringify(this.user),
+          body: JSON.stringify(user),
         })
-        .then(() => { 
-          this.notification = 'User created!';
+        .then(() => {
+          this.notification = "User updated!";
         })
         .catch(err => console.log(err));
       },
     },
 
-    created: function() {
-      this.notification = '';
-    }
+    created: function(){
+      this.getUser(this.userId);
+    },
   }
 </script>
 

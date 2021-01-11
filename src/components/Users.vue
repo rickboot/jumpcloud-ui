@@ -3,10 +3,6 @@
 
     <h4>Users</h4>
 
-    <div class="button-container">
-        <button @click.prevent="deleteUser">Delete</button>
-    </div>
-
     <table class="table table-striped">
 
       <thead>
@@ -24,7 +20,12 @@
           <td class="username-column">{{user.username}}</td>
           <td class="email-column">{{user.email}}</td>
           <td>
-            <router-link to="/update" tag="button">Edit</router-link>
+            <router-link :to="/edit/+user.id" tag="button">Edit</router-link>
+            <router-link :to="/details/+user.id" tag="button">Details</router-link>
+            <!-- <button @click.prevent="deleteUser(user.id)"></button> -->
+            <button>
+              <span @click="deleteUser(user.id)" tag="button" class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            </button>
           </td>
         </tr>
       </tbody>
@@ -61,10 +62,7 @@ export default {
       .catch(err => console.log(err));
     },
 
-    deleteUser() {
-      // RICK
-      let userId = this.users[0].id;
-
+    deleteUser(userId) {
       fetch('http://localhost:8005/api/systemusers/' + userId, {
         method: 'DELETE'
       })
