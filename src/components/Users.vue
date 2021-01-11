@@ -6,23 +6,22 @@
     <table class="table table-striped">
 
       <thead>
-        <tr class="tableheader">
-          <th class="name-column">Name</th>
-          <th class="username-column">Username</th>
-          <th class="email-column">Email</th>
+        <tr>
+          <th>Name</th>
+          <th>Username</th>
+          <th>Email</th>
           <th></th>
         </tr>
       </thead>
 
       <tbody>
         <tr  v-for="user in users" :key="user.id">
-          <td class="name-column">{{user.firstname}} {{user.lastname}}</td>
-          <td class="username-column">{{user.username}}</td>
-          <td class="email-column">{{user.email}}</td>
+          <td>{{user.firstname}} {{user.lastname}}</td>
+          <td>{{user.username}}</td>
+          <td>{{user.email}}</td>
           <td>
             <router-link :to="/edit/+user.id" tag="button">Edit</router-link>
             <router-link :to="/details/+user.id" tag="button">Details</router-link>
-            <!-- <button @click.prevent="deleteUser(user.id)"></button> -->
             <button>
               <span @click="deleteUser(user.id)" tag="button" class="glyphicon glyphicon-remove" aria-hidden="true"></span>
             </button>
@@ -37,7 +36,6 @@
 </template>
 
 <script>
-// import UsersPane from './components/UsersPane.vue'
 
 export default {
 

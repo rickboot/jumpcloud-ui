@@ -27,11 +27,11 @@ export default {
 </script>
 
 <style>
-
 button {
   margin-left: 10px;
   border-style: none;
   outline: none;
+  background: none;
 }
 
 .notification {
@@ -41,6 +41,5 @@ button {
   vertical-align: center;
   background-color:skyblue;
 }
-
 </style>
 
