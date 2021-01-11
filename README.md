@@ -1,4 +1,11 @@
-# jumpcloud-ui-assignment
+# Front-end demo project using JumpCloud API  
+
+## Client built with:
+
+* Vue.js 2 (via Vue CLI)
+* vue-router
+
+CSS is custom with the exception of some bootstrap CSS used for top nav.
 
 ## Project setup
 ```
