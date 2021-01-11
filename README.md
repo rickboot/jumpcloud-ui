@@ -18,4 +18,4 @@ npm run start
 npm run serve
 ```
 
-![Screenshot](/assets/screenshot.png)
+![Screenshot](/src/assets/screenshot.png)
